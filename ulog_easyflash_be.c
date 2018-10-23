@@ -33,7 +33,7 @@
 #define LOG_TAG              "easyflash"
 #include <ulog.h>
 
-#ifdef PKG_USING_ULOG_EASYFLASH_BACKEND
+#ifdef PKG_USING_ULOG_EASYFLASH
 
 #if defined(ULOG_ASYNC_OUTPUT_BY_THREAD) && ULOG_ASYNC_OUTPUT_THREAD_STACK < 1024
 #error "The thread stack size must more than 1024 when using async output by thread (ULOG_ASYNC_OUTPUT_BY_THREAD)"
@@ -199,4 +199,4 @@ static void ulog_flash(uint8_t argc, char **argv)
 MSH_CMD_EXPORT(ulog_flash, ulog <read|clean> flash log by EasyFlash backend);
 #endif /* defined(RT_USING_FINSH) && defined(FINSH_USING_MSH) */
 
-#endif /* PKG_USING_ULOG_EASYFLASH_BACKEND */
+#endif /* PKG_USING_ULOG_EASYFLASH */

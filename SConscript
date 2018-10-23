@@ -4,6 +4,6 @@ cwd = GetCurrentDir()
 src = Glob('quicklz.c')
 CPPPATH = [cwd]
 
-group = DefineGroup('EasyFlash', src, depend = ['PKG_USING_ULOG_EASYFLASH_BACKEND'], CPPPATH = CPPPATH)
+group = DefineGroup('EasyFlash', src, depend = ['PKG_USING_ULOG_EASYFLASH'], CPPPATH = CPPPATH)
 
 Return('group')
