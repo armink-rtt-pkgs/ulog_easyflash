@@ -57,6 +57,9 @@ static void read_flash_log(size_t index, size_t size)
     size_t buf_size = sizeof(buf);
     size_t read_size = 0;
 
+    /* word alignment for index and size */
+    index = RT_ALIGN_DOWN(index, 4);
+    size = RT_ALIGN_DOWN(size, 4);
     if (index + size > log_total_size)
     {
         rt_kprintf("The output position and size is out of bound. The max size is %d.\n", log_total_size);
