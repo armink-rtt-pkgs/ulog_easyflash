@@ -1,7 +1,7 @@
 from building import *
 
 cwd = GetCurrentDir()
-src = Glob('quicklz.c')
+src = Glob('*.c')
 CPPPATH = [cwd]
 
 group = DefineGroup('EasyFlash', src, depend = ['PKG_USING_ULOG_EASYFLASH'], CPPPATH = CPPPATH)
