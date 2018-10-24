@@ -40,6 +40,7 @@
 #endif
 
 static struct ulog_backend console;
+static rt_uint32_t log_saving_lvl = LOG_FILTER_LVL_ALL;
 
 /**
  * Read and output log to console.
@@ -146,16 +147,30 @@ static void ulog_easyflash_backend_output(struct ulog_backend *backend, rt_uint3
     size_t write_size_temp = 0;
     EfErrCode result = EF_NO_ERR;
 
-    /* calculate the word alignment write size */
-    write_size_temp = RT_ALIGN_DOWN(len, 4);
-
-    result = ef_log_write((uint32_t *) log, write_size_temp);
-    /* write last word alignment data */
-    if ((result == EF_NO_ERR) && (write_size_temp != len))
+    /* saving level filter for flash log */
+    if (level <= log_saving_lvl)
     {
-        memcpy(write_overage_c, log + write_size_temp, len - write_size_temp);
-        ef_log_write((uint32_t *) write_overage_c, sizeof(write_overage_c));
+        /* calculate the word alignment write size */
+        write_size_temp = RT_ALIGN_DOWN(len, 4);
+
+        result = ef_log_write((uint32_t *) log, write_size_temp);
+        /* write last word alignment data */
+        if ((result == EF_NO_ERR) && (write_size_temp != len))
+        {
+            memcpy(write_overage_c, log + write_size_temp, len - write_size_temp);
+            ef_log_write((uint32_t *) write_overage_c, sizeof(write_overage_c));
+        }
     }
+}
+
+/**
+ * Set flash log saving level. The log which level less than setting will stop saving to flash.
+ *
+ * @param level setting level
+ */
+void ulog_easyflash_lvl_set(rt_uint32_t level)
+{
+    log_saving_lvl = level;
 }
 
 int ulog_easyflash_backend_init(void)

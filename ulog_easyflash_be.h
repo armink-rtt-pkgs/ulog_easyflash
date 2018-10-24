@@ -31,5 +31,6 @@
 
 int ulog_easyflash_backend_init(void);
 void ulog_easyflash_clean(void);
+void ulog_easyflash_lvl_set(rt_uint32_t level);
 
 #endif /* _ULOG_EASYFLASH_BE_H_ */
