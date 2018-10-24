@@ -30,6 +30,8 @@ RT-Thread online packages
 
 然后让 RT-Thread 的包管理器自动更新，或者使用 `pkgs --update` 命令更新包到 BSP 中。
 
+> **注意** ：如果之前未开启 EasyFlash 的 LOG 功能，开启本软件包后，需要在 EasyFlash 选项中配置日志区域大小，配置名称为： Saved log area size。
+
 ## 3、使用说明
 
 软件包的使用非常简单，只需要在应用层调用 `ulog_easyflash_backend_init()` 初始化函数即可。如果项目开启了组件自动初始化，甚至连这个函数都无需调用，软件包里已经为这个函数添加了组件初始化功能。下面重点介绍下 Finsh/MSH 命令如何使用
