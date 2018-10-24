@@ -34,13 +34,23 @@ RT-Thread online packages
 
 ## 3、使用说明
 
-软件包的使用非常简单，只需要在应用层调用 `ulog_easyflash_backend_init()` 初始化函数即可。如果项目开启了组件自动初始化，甚至连这个函数都无需调用，软件包里已经为这个函数添加了组件初始化功能。下面重点介绍下 Finsh/MSH 命令如何使用
+### 3.1 初始化
 
-### 3.1 Finsh/MSH 命令的使用
+需要在应用层调用 `ulog_easyflash_backend_init()` 初始化函数即可。如果项目开启了组件自动初始化，甚至连这个函数都无需调用，软件包里已经为这个函数添加了组件初始化功能。
+
+### 3.2 设定日志保存级别
+
+通过该函数：`void ulog_easyflash_lvl_set(rt_uint32_t level)` ，可以设定想要保存到 Flash 里的日志级别，低于该级别的日志将被 **丢弃** 。举例：设定只保存警告（含）以上级别的日志，可以执行如下代码 ： 
+
+```c
+ulog_easyflash_lvl_set(LOG_LVL_WARNING)；
+```
+
+### 3.3 Finsh/MSH 命令的使用
 
 命令的格式为 `ulog_flash <read|clean>` 
 
-#### 3.1.1 历史日志读取
+#### 3.3.1 历史日志读取
 
 历史日志存到 Flash 后，可以通过下面的命令读取到控制台上，方便开发者回顾日志，分析问题。
 
@@ -64,7 +74,7 @@ log_w(50): RT-Thread is an open source IoT operating system from China.
 msh />
 ```
 
-#### 3.1.1 清空历史日志
+#### 3.3.1 清空历史日志
 
 当需要清空日志区的全部历史日志时，可以输入命令： `ulog_flash clean`
 
