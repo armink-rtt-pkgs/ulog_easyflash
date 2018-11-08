@@ -122,7 +122,7 @@ static void read_recent_flash_log(size_t size)
 /**
  * clean all log which in flash
  */
-void ulog_easyflash_clean(void)
+void ulog_ef_log_clean(void)
 {
     EfErrCode clean_result = EF_NO_ERR;
 
@@ -168,12 +168,12 @@ static void ulog_easyflash_backend_output(struct ulog_backend *backend, rt_uint3
  *
  * @param level setting level
  */
-void ulog_easyflash_lvl_set(rt_uint32_t level)
+void ulog_ef_log_lvl_set(rt_uint32_t level)
 {
     log_saving_lvl = level;
 }
 
-int ulog_easyflash_backend_init(void)
+int ulog_ef_backend_init(void)
 {
     console.output = ulog_easyflash_backend_output;
 
@@ -181,7 +181,7 @@ int ulog_easyflash_backend_init(void)
 
     return 0;
 }
-INIT_APP_EXPORT(ulog_easyflash_backend_init);
+INIT_APP_EXPORT(ulog_ef_backend_init);
 
 #if defined(RT_USING_FINSH) && defined(FINSH_USING_MSH)
 #include <finsh.h>
@@ -202,7 +202,7 @@ static void ulog_flash(uint8_t argc, char **argv)
         }
         else if (!strcmp(argv[1], "clean"))
         {
-            ulog_easyflash_clean();
+            ulog_ef_log_clean();
         }
         else
         {

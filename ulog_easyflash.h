@@ -22,15 +22,15 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * The ulog backend implementation for EasyFlash.
+ * The ulog flash plugin by EasyFlash.
  * Created on: 2018-10-22
  */
 
-#ifndef _ULOG_EASYFLASH_BE_H_
-#define _ULOG_EASYFLASH_BE_H_
+#ifndef _ULOG_EASYFLASH_H_
+#define _ULOG_EASYFLASH_H_
 
-int ulog_easyflash_backend_init(void);
-void ulog_easyflash_clean(void);
-void ulog_easyflash_lvl_set(rt_uint32_t level);
+int ulog_ef_backend_init(void);
+void ulog_ef_log_clean(void);
+void ulog_ef_log_lvl_set(rt_uint32_t level);
 
-#endif /* _ULOG_EASYFLASH_BE_H_ */
+#endif /* _ULOG_EASYFLASH_H_ */
