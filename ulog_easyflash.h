@@ -32,5 +32,7 @@
 int ulog_ef_backend_init(void);
 void ulog_ef_log_clean(void);
 void ulog_ef_log_lvl_set(rt_uint32_t level);
+int ulog_ef_filter_cfg_load(void);
+void ulog_ef_filter_cfg_save(void);
 
 #endif /* _ULOG_EASYFLASH_H_ */
