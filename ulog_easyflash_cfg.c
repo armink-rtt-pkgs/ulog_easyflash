@@ -143,13 +143,21 @@ void ulog_ef_filter_cfg_save(void)
     {
         ef_set_env(ENV_FILTER_GLOBAL_TAG_NAME, ulog_global_filter_tag_get());
     }
-
+    else if(ef_get_env(ENV_FILTER_GLOBAL_TAG_NAME))
+    {    
+        ef_del_env(ENV_FILTER_GLOBAL_TAG_NAME);
+    }
+    
     /* set the global kw env */
     if (rt_strlen(ulog_global_filter_kw_get()))
     {
         ef_set_env(ENV_FILTER_GLOBAL_KW_NAME, ulog_global_filter_kw_get());
     }
-
+    else if(ef_get_env(ENV_FILTER_GLOBAL_KW_NAME))
+    {    
+        ef_del_env(ENV_FILTER_GLOBAL_KW_NAME);
+    }
+    
     /* set the tag's level env */
     {
         rt_slist_t *node;
@@ -177,9 +185,16 @@ void ulog_ef_filter_cfg_save(void)
             rt_memcpy(cfgs + cfgs_size - node_size + tag_len + 1          , lvl_num, lvl_len);
             rt_memcpy(cfgs + cfgs_size - node_size + tag_len + 1 + lvl_len, "##", 2);
         }
-        cfgs[cfgs_size - 2] = '\0';
 
-        ef_set_env(ENV_FILTER_TAG_LVL_NAME, (char *)cfgs);
+        if((cfgs)&&(cfgs_size>2))
+        {    
+            cfgs[cfgs_size - 2] = '\0';
+            ef_set_env(ENV_FILTER_TAG_LVL_NAME, (char *)cfgs);
+        }
+        else if(ef_get_env(ENV_FILTER_TAG_LVL_NAME))
+        {    
+            ef_del_env(ENV_FILTER_TAG_LVL_NAME);
+        }
     }
 
 __exit:
