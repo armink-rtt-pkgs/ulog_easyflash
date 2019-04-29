@@ -39,7 +39,7 @@
 #error "The thread stack size must more than 1024 when using async output by thread (ULOG_ASYNC_OUTPUT_BY_THREAD)"
 #endif
 
-static struct ulog_backend console;
+static struct ulog_backend flash_backend;
 static rt_uint32_t log_saving_lvl = LOG_FILTER_LVL_ALL;
 
 /**
@@ -175,9 +175,9 @@ void ulog_ef_log_lvl_set(rt_uint32_t level)
 
 int ulog_ef_backend_init(void)
 {
-    console.output = ulog_easyflash_backend_output;
+    flash_backend.output = ulog_easyflash_backend_output;
 
-    ulog_backend_register(&console, "easyflash", RT_TRUE);
+    ulog_backend_register(&flash_backend, "easyflash", RT_TRUE);
 
     return 0;
 }
