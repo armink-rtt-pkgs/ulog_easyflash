@@ -185,6 +185,7 @@ INIT_APP_EXPORT(ulog_ef_backend_init);
 
 #if defined(RT_USING_FINSH) && defined(FINSH_USING_MSH)
 #include <finsh.h>
+#include <stdlib.h>
 static void ulog_flash(uint8_t argc, char **argv)
 {
     if (argc >= 2)
