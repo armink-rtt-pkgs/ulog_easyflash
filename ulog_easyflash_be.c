@@ -29,6 +29,7 @@
 #include <rtthread.h>
 #include <easyflash.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define LOG_TAG              "easyflash"
 #include <ulog.h>
